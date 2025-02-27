@@ -3,7 +3,7 @@ import { useState } from "react";
 
 function App() {
   const [datos, setDatos] = useState({});
-  const [location, setLocation] = useState("dallas");
+  const [location, setLocation] = useState("");
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=bec1373e7f9bb7c9472b0c7266285c24`;
 
   const searchLocation = (e) => {
@@ -36,7 +36,11 @@ function App() {
             )}
           </div>
           <div className="temp font-semibold text-2xl">
-            {datos.main?.temp ? <p>{datos.main.temp}</p> : <p>Sin data</p>}
+            {datos?.main?.temp !== undefined ? (
+              <p>{(datos.main.temp - 273.15).toFixed(1)}</p>
+            ) : (
+              <p>Sin data</p>
+            )}
           </div>
           <div className="description">nubladisimo kpo</div>
         </div>
