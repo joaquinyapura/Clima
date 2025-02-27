@@ -1,17 +1,42 @@
-import { SearchBar } from "./Components/SearchBar";
+import axios from "axios";
+import { useState } from "react";
 
 function App() {
-  // const url = `https://api.openweathermap.org/data/2.5/weather?q=dallas&appid=bec1373e7f9bb7c9472b0c7266285c24`;
+  const [datos, setDatos] = useState({});
+  const [location, setLocation] = useState("dallas");
+  const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=bec1373e7f9bb7c9472b0c7266285c24`;
+
+  const searchLocation = (e) => {
+    e.preventDefault();
+    axios.get(url).then((response) => {
+      setDatos(response.data);
+      console.log(datos.main);
+    });
+  };
 
   return (
     <div className="w-full bg-slate-900 text-white bg-[url(assets/sunset.jpg)] bg-cover">
       <div className="max-w-[1240px] mx-auto flex flex-col justify-between h-screen">
-        <div className="top mt-40 p-10">
+        <div className="w-full flex justify-center py-6">
+          <form action="" onSubmit={searchLocation}>
+            <input
+              type="text"
+              placeholder="Enter location"
+              className=" rounded-full px-6 py-2 text-black "
+              onChange={(e) => setLocation(e.target.value)}
+            />
+          </form>
+        </div>
+        <div className="top  p-10">
           <div className="location">
-            <p className="text-5xl font-black">Dallas</p>
+            {datos.name ? (
+              <p className="text-5xl font-black">{datos.name}</p>
+            ) : (
+              <p className="text-5xl font-black">Ciudad</p>
+            )}
           </div>
           <div className="temp font-semibold text-2xl">
-            <p>30°</p>
+            {datos.main?.temp ? <p>{datos.main.temp}</p> : <p>Sin data</p>}
           </div>
           <div className="description">nubladisimo kpo</div>
         </div>

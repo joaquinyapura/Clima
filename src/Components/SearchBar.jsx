@@ -7,9 +7,13 @@ export const SearchBar = () => {
     setLocation(e.target.value);
   };
 
+  const handlesubmit = (e) => {
+    e.preventDefault();
+  };
+
   return (
     <div className="w-full flex justify-center py-6">
-      <form action="">
+      <form action="" onSubmit={handlesubmit}>
         <input
           type="text"
           placeholder="Enter location"
