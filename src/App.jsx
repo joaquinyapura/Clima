@@ -1,7 +1,7 @@
 import { SearchBar } from "./Components/SearchBar";
 
 function App() {
-  const url = `https://api.openweathermap.org/data/2.5/weather?q=dallas&appid=bec1373e7f9bb7c9472b0c7266285c24`;
+  // const url = `https://api.openweathermap.org/data/2.5/weather?q=dallas&appid=bec1373e7f9bb7c9472b0c7266285c24`;
 
   return (
     <div className="w-full bg-slate-900 text-white bg-[url(assets/sunset.jpg)] bg-cover">
