@@ -37,7 +37,7 @@ function App() {
           </div>
           <div className="temp font-semibold text-2xl">
             {datos?.main?.temp !== undefined ? (
-              <p>{(datos.main.temp - 273.15).toFixed(1)}</p>
+              <p>{(datos.main.temp - 273.15).toFixed(1)}°C</p>
             ) : (
               <p>Sin data</p>
             )}
