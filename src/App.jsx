@@ -30,7 +30,7 @@ function App() {
         <div className="top  p-10">
           <div className="location">
             {datos.name ? (
-              <p className="text-5xl font-black">{datos.name}</p>
+              <p className="text-5xl font-black drop-shadow-md">{datos.name}</p>
             ) : (
               <p className="text-5xl font-black">Ciudad</p>
             )}
@@ -42,20 +42,31 @@ function App() {
               <p>Sin data</p>
             )}
           </div>
-          <div className="description">nubladisimo kpo</div>
         </div>
         <div className="mb-10 p-10 g-gray-400 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-20 border border-gray-100 font-bold text-lg flex justify-between items-center">
           <div className="termica">
             <h2>Sensación termica</h2>
-            <p>40°</p>
+            {datos?.main?.temp !== undefined ? (
+              <p>{(datos.main.feels_like - 273.15).toFixed(1)}</p>
+            ) : (
+              <p>Sin data</p>
+            )}
           </div>
           <div className="humedad">
             <h2>Humedad</h2>
-            <p>41</p>
+            {datos?.main?.humidity !== undefined ? (
+              <p>{datos.main.humidity} %</p>
+            ) : (
+              <p>Sin data</p>
+            )}
           </div>
           <div className="viento">
-            <h2>vientos</h2>
-            <p>230kph</p>
+            <h2>Vientos</h2>
+            {datos?.wind?.speed !== undefined ? (
+              <p>{datos.wind.speed} Kph</p>
+            ) : (
+              <p>Sin data</p>
+            )}
           </div>
         </div>
       </div>
